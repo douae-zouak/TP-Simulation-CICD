@@ -56,3 +56,17 @@ jobs:
     name: Deploy Production
     needs: deploy-staging
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Simuler le deploiement production
+        run: |
+          echo "Deploiement en environnement PRODUCTION..."
+          mkdir -p production
+          echo "Version stable de l'application" > production/app.txt
+          echo "Deploiement PRODUCTION termine avec succes"
+
+      - name: Sauvegarder la version production
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-production
+          path: production/
